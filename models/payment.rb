@@ -1,13 +1,11 @@
-class Order
+class Payment
   include DataMapper::Resource
 
   property :id, Serial
-  property :description, String
   property :amount, Integer
+  property :date, Date
   property :status, String # TODO symbol?
 
-  belongs_to :customer
-
-  has n, :payments
+  belongs_to :order
 
 end
