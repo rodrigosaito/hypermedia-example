@@ -1,6 +1,20 @@
-APP_ENV = ENV['RACK_ENV'] ||= :development unless defined?(APP_ENV)
+APP_ENV = ENV['RACK_ENV'] ||= "development" unless defined?(APP_ENV)
 
-module HypermediaExample
+# Load our dependencies
+require 'rubygems' unless defined?(Gem)
+require 'bundler/setup'
+Bundler.require(:default, APP_ENV)
+
+# Autload lib
+Dir[File.expand_path(File.dirname(__FILE__) + "/../lib/*/*.rb")].each {|file| require file }
+
+require 'sinatra/base'
+
+class HypermediaExample < Sinatra::Base
+
+  get "/" do
+    "Hello World"
+  end
 
   def self.env
     APP_ENV
@@ -10,12 +24,9 @@ module HypermediaExample
     File.expand_path(File.dirname(__FILE__) + "/../")
   end
 
+  # start the server if ruby file executed directly
+  run! if app_file == $0
 end
-
-# Load our dependencies
-require 'rubygems' unless defined?(Gem)
-require 'bundler/setup'
-Bundler.require(:default, APP_ENV)
 
 # Config database
 #DataMapper.logger = logger
@@ -24,12 +35,14 @@ DataMapper::Property::String.length(255)
 # TODO externalize this config
 case APP_ENV
   when :development then DataMapper.setup(:default, "sqlite3://" + File.join(HypermediaExample.root, 'db', "test_development.db"))
+  when "development" then DataMapper.setup(:default, "sqlite3://" + File.join(HypermediaExample.root, 'db', "test_development.db"))
   when :production  then DataMapper.setup(:default, "sqlite3://" + File.join(HypermediaExample.root, 'db', "test_production.db"))
   when :test        then DataMapper.setup(:default, "sqlite3://" + File.join(HypermediaExample.root, 'db', "test_test.db"))
 end
 
 # Autoload all models
 Dir[File.expand_path(File.dirname(__FILE__) + "/../models/*.rb")].each {|file| require file }
+Dir[File.expand_path(File.dirname(__FILE__) + "/../app/*/*.rb")].each {|file| require file }
 
 DataMapper.finalize
 
