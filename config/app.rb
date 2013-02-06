@@ -12,10 +12,6 @@ require 'sinatra/base'
 
 class HypermediaExample < Sinatra::Base
 
-  get "/" do
-    "Hello World"
-  end
-
   def self.env
     APP_ENV
   end
@@ -24,8 +20,6 @@ class HypermediaExample < Sinatra::Base
     File.expand_path(File.dirname(__FILE__) + "/../")
   end
 
-  # start the server if ruby file executed directly
-  run! if app_file == $0
 end
 
 # Config database
