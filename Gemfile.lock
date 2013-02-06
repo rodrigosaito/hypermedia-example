@@ -1,8 +1,9 @@
 GIT
   remote: https://github.com/rodrigosaito/haler.git
-  revision: 271f78036078a450a17b4e31f590ce4d9269d837
+  revision: e7bfabad064df7971fd9bf33e1063596c0250f91
   specs:
     haler (0.0.1)
+      activesupport
 
 GEM
   remote: http://rubygems.org/

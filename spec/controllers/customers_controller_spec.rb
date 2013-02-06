@@ -9,21 +9,26 @@ describe "Orders Controller" do
     before { get "/customers" }
 
     let(:expected_json) do
-      [
-        {
-          name: "Some Customer",
-          _links: {
-            self: { href: "/customers/id" }
+      {
+        _links: {
+          self: { href: '/customers' }
+        },
+        customers: [
+          {
+            name: "Some Customer",
+            _links: {
+              self: { href: "/customers/id" }
+            }
           }
-        }
-      ].to_json
+        ]
+      }.to_json
     end
 
     it "returns a application/hal+json response" do
       last_response.content_type.should eq "application/hal+json"
     end
 
-    it "returns a json array" do
+    it "returns a hal+json collection" do
       last_response.body.should eq expected_json
     end
 

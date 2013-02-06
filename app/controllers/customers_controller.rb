@@ -2,7 +2,7 @@ class HypermediaExample
   helpers Sinatra::Hal
 
   get "/customers" do
-    hal Customer.all
+    hal Customer
   end
 
   get "/customers/:id" do
