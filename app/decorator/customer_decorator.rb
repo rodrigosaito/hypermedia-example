@@ -4,4 +4,6 @@ class CustomerDecorator
   field :name
   field :email
 
+  embedded :orders
+
 end

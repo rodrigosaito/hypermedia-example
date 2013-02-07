@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rodrigosaito/haler.git
-  revision: e7bfabad064df7971fd9bf33e1063596c0250f91
+  revision: 88c6ad1b32f2f5093d38cb6d08d11de51dcc5633
   specs:
     haler (0.0.1)
       activesupport

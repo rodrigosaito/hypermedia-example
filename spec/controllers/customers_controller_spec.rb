@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Orders Controller" do
 
-  let!(:customer) { create :customer }
+  let!(:customer) { create :customer, orders: [ create(:order) ]}
 
   describe "/customers" do
 
