@@ -14,12 +14,7 @@ describe "Orders Controller" do
           self: { href: '/customers' }
         },
         customers: [
-          {
-            name: "Some Customer",
-            _links: {
-              self: { href: "/customers/id" }
-            }
-          }
+          CustomerDecorator.new(customer).serialize
         ]
       }.to_json
     end
@@ -39,12 +34,7 @@ describe "Orders Controller" do
     before { get "/customers/#{customer.id}" }
 
     let(:expected_json) do
-      {
-        name: "Some Customer",
-        _links: {
-          self: { href: "/customers/id"}
-        }
-      }.to_json
+      CustomerDecorator.new(customer).serialize.to_json
     end
 
     it "returns a customer as hal+json" do

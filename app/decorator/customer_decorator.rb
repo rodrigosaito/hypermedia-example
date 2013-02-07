@@ -1,10 +1,7 @@
-class CustomerDecorator 
+class CustomerDecorator
   include Haler::Decorator
 
   field :name
-
-  link :self do
-    "/customers/id"
-  end
+  field :email
 
 end
