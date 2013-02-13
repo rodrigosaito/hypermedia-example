@@ -1,8 +1,16 @@
 require 'spec_helper'
 
-describe "Orders Controller" do
+describe "Customers Controller" do
 
-  let!(:customer) { create :customer, orders: [ create(:order) ]}
+  let!(:customers) do
+    FactoryGirl.create_list(:customer, 25)
+  end
+
+  let!(:customer) { customers.first }
+
+  def parsed_resp
+    JSON.parse(last_response.body, symbolize_names: true)
+  end
 
   describe "/customers" do
 
@@ -13,10 +21,8 @@ describe "Orders Controller" do
         _links: {
           self: { href: '/customers' }
         },
-        customers: [
-          CustomerDecorator.new(customer).serialize
-        ]
-      }.to_json
+        customers: Haler.decorate(customers.first(10)).serialize
+      }
     end
 
     it "returns a application/hal+json response" do
@@ -24,7 +30,26 @@ describe "Orders Controller" do
     end
 
     it "returns a hal+json collection" do
-      last_response.body.should eq expected_json
+      parsed_resp.should eq expected_json
+    end
+
+    context "when pagination parameters are passed" do
+
+      before { get "/customers?limit=2&offset=2" }
+
+      let(:expected_json) do
+        {
+          _links: {
+            self: { href: '/customers' }
+          },
+          customers: Haler.decorate(customers[2..3]).serialize
+        }
+      end
+
+      it "returns a hal+json collection" do
+        parsed_resp.should eq expected_json
+      end
+
     end
 
   end
@@ -34,7 +59,7 @@ describe "Orders Controller" do
     before { get "/customers/#{customer.id}" }
 
     let(:expected_json) do
-      CustomerDecorator.new(customer).serialize.to_json
+      Haler.decorate(customer).to_json
     end
 
     it "returns a customer as hal+json" do

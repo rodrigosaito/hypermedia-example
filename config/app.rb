@@ -31,7 +31,7 @@ case APP_ENV
   when :development then DataMapper.setup(:default, "sqlite3://" + File.join(HypermediaExample.root, 'db', "test_development.db"))
   when "development" then DataMapper.setup(:default, "sqlite3://" + File.join(HypermediaExample.root, 'db', "test_development.db"))
   when :production  then DataMapper.setup(:default, "sqlite3://" + File.join(HypermediaExample.root, 'db', "test_production.db"))
-  when :test        then DataMapper.setup(:default, "sqlite3://" + File.join(HypermediaExample.root, 'db', "test_test.db"))
+  when :test        then DataMapper.setup(:default, "sqlite3://" + File.join(HypermediaExample.root, 'db', "hypermedia-example_test.db"))
 end
 
 # Autoload all models

@@ -6,7 +6,7 @@ gem 'data_mapper'
 
 gem 'json'
 # TODO change to real version
-gem 'haler', git: 'https://github.com/rodrigosaito/haler.git'
+gem 'haler', git: 'https://github.com/rodrigosaito/haler.git', branch: 'master'
 
 group :development, :test do
   gem 'dm-sqlite-adapter'
