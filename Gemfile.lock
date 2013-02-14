@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rodrigosaito/haler.git
-  revision: 2d47b767de992fddfbadcc8d46fae0a8beacdbeb
+  revision: 8cfd48c51c4841f91ab65b2f38da5fbc06a9a2c0
   branch: master
   specs:
     haler (0.0.1)
@@ -85,7 +85,7 @@ GEM
     listen (0.7.2)
     lumberjack (1.0.2)
     method_source (0.8.1)
-    multi_json (1.6.0)
+    multi_json (1.6.1)
     pry (0.9.12)
       coderay (~> 1.0.5)
       method_source (~> 0.8)

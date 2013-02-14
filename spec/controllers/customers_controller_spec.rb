@@ -6,7 +6,7 @@ describe "Customers Controller" do
     FactoryGirl.create_list(:customer, 25)
   end
 
-  let!(:customer) { customers.first }
+  let(:customer) { customers.first }
 
   def parsed_resp
     JSON.parse(last_response.body, symbolize_names: true)
@@ -19,7 +19,8 @@ describe "Customers Controller" do
     let(:expected_json) do
       {
         _links: {
-          self: { href: '/customers' }
+          self: { href: '/customers' },
+          next_page: { href: '/customers?limit=10&offset=10' }
         },
         customers: Haler.decorate(customers.first(10)).serialize
       }
@@ -40,7 +41,8 @@ describe "Customers Controller" do
       let(:expected_json) do
         {
           _links: {
-            self: { href: '/customers' }
+            self: { href: '/customers' },
+            next_page: { href: '/customers?limit=2&offset=4' }
           },
           customers: Haler.decorate(customers[2..3]).serialize
         }
