@@ -1,10 +1,11 @@
 GIT
   remote: https://github.com/rodrigosaito/haler.git
-  revision: 8cfd48c51c4841f91ab65b2f38da5fbc06a9a2c0
+  revision: f1f97380669c6e627f1ca13020c0c3fcfc97dd06
   branch: master
   specs:
     haler (0.0.1)
       activesupport
+      rake
 
 GEM
   remote: http://rubygems.org/
@@ -102,6 +103,7 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     raindrops (0.10.0)
+    rake (10.0.3)
     rspec (2.12.0)
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
