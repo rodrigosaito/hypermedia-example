@@ -10,6 +10,14 @@ class HypermediaExample
     hal Customer, options
   end
 
+  post "/customers" do
+    params = JSON.parse request.body.read
+
+    Customer.create(params)
+
+    201
+  end
+
   get "/customers/:id" do
     hal Customer.get(params[:id])
   end

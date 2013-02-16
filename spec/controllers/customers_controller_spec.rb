@@ -12,7 +12,7 @@ describe "Customers Controller" do
     JSON.parse(last_response.body, symbolize_names: true)
   end
 
-  describe "/customers" do
+  describe "GET /customers" do
 
     before { get "/customers" }
 
@@ -56,7 +56,19 @@ describe "Customers Controller" do
 
   end
 
-  describe "/customers/:id" do
+  describe "POST /customers" do
+
+    it "creates a new customer" do
+      expect {
+        post "/customers", attributes_for(:customer).to_json, "CONTEXT_TYPE" => "application/json"
+
+        last_response.status.should eq 201
+      }.to change(Customer, :count).by(1)
+    end
+
+  end
+
+  describe "GET /customers/:id" do
 
     before { get "/customers/#{customer.id}" }
 
