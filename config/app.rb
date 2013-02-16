@@ -37,7 +37,7 @@ DataMapper::Property::String.length(255)
 database_config = {
   'development' => "postgres://localhost/hypermedia-example_development",
   'test' => "sqlite3://" + File.join(HypermediaExample.root, 'db', 'hypermedia-example_test.db'),
-  'production' => ENV['DATABASE_URL']
+  'production' => ENV['HEROKU_POSTGRESQL_IVORY_URL']
 }
 
 DataMapper.setup(:default, database_config[APP_ENV])
