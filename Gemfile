@@ -14,6 +14,8 @@ gem 'json'
 # TODO change to real version
 gem 'haler', git: 'https://github.com/rodrigosaito/haler.git', branch: 'master'
 
+gem 'faker', require: false
+
 group :test do
   gem 'dm-sqlite-adapter'
   gem 'rspec'
@@ -22,3 +24,4 @@ group :test do
   gem 'rack-test'
   gem 'database_cleaner'
 end
+
