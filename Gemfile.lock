@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rodrigosaito/haler.git
-  revision: f1f97380669c6e627f1ca13020c0c3fcfc97dd06
+  revision: 0c2bcfcf034b4eb277e3a40631d4f1337f992c6f
   branch: master
   specs:
     haler (0.0.1)
@@ -8,7 +8,7 @@ GIT
       rake
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     activesupport (3.2.12)
       i18n (~> 0.6)
@@ -84,7 +84,7 @@ GEM
       pry (>= 0.9.10)
       terminal-table (>= 1.4.3)
       thor (>= 0.14.6)
-    guard-rspec (2.4.0)
+    guard-rspec (2.4.1)
       guard (>= 1.1)
       rspec (~> 2.11)
     i18n (0.6.1)

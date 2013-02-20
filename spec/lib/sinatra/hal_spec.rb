@@ -6,8 +6,15 @@ describe Sinatra::Hal do
     Sinatra.new do
       helpers Sinatra::Hal
 
-      get("/") do
-        hal Person.new 
+      get "/" do
+        hal_links do
+          link :self, "/"
+          link :people, "/people"
+        end
+      end
+
+      get("/people/1") do
+        hal Person.new
       end
 
       get("/people") do
@@ -42,7 +49,7 @@ describe Sinatra::Hal do
       end
 
       it "returns an application/hal+json response" do
-        get "/"
+        get "/people/1"
         response_should_eq expected_json
       end
 
@@ -69,6 +76,25 @@ describe Sinatra::Hal do
         response_should_eq expected_json
       end
 
+    end
+
+  end
+
+  describe "hal_links" do
+
+    let(:expected_hash) do
+      {
+        "_links" => {
+          "self" => { "href" => "/" },
+          "people" => { "href" => "/people" }
+        }
+
+      }
+    end
+
+    it "returns a json with links" do
+      get "/"
+      response_should_eq expected_hash
     end
 
   end
