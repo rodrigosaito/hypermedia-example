@@ -1,5 +1,4 @@
 class HypermediaExample
-  helpers Sinatra::Hal
 
   get "/customers" do
     options = {}.tap do |opt|
@@ -19,7 +18,7 @@ class HypermediaExample
   end
 
   get "/customers/:id" do
-    hal Customer.get(params[:id])
+    hal Customer.get(params[:id].to_i)
   end
 
 end

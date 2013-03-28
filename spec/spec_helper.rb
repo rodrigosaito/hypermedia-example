@@ -41,6 +41,14 @@ def app
   HypermediaExample
 end
 
+def parsed_resp
+  begin
+    JSON.parse(last_response.body, symbolize_names: true)
+  rescue
+    fail "Invalid JSON response: #{last_response.body[0..1000]}..."
+  end
+end
+
 # Test Helper Classes
 class Person
 

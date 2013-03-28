@@ -8,10 +8,6 @@ describe "Customers Controller" do
 
   let(:customer) { customers.first }
 
-  def parsed_resp
-    JSON.parse(last_response.body, symbolize_names: true)
-  end
-
   describe "GET /customers" do
 
     before { get "/customers" }
@@ -22,7 +18,7 @@ describe "Customers Controller" do
           self: { href: '/customers' },
           next_page: { href: '/customers?limit=10&offset=10' }
         },
-        customers: Haler.decorate(customers.first(10)).serialize
+        customers: Haler.decorate(customers.first(10), { customer: { only_key_fields: true } }).serialize
       }
     end
 
@@ -44,7 +40,7 @@ describe "Customers Controller" do
             self: { href: '/customers' },
             next_page: { href: '/customers?limit=2&offset=4' }
           },
-          customers: Haler.decorate(customers[2..3]).serialize
+          customers: Haler.decorate(customers[2..3], { customer: { only_key_fields: true }}).serialize
         }
       end
 
@@ -72,12 +68,12 @@ describe "Customers Controller" do
 
     before { get "/customers/#{customer.id}" }
 
-    let(:expected_json) do
-      Haler.decorate(customer).to_json
+    let(:expected_hash) do
+      Haler.decorate(customer).serialize
     end
 
     it "returns a customer as hal+json" do
-      last_response.body.should eq expected_json
+      parsed_resp.should eq expected_hash
     end
 
   end

@@ -10,9 +10,16 @@ namespace :db do
     require 'faker'
 
     Customer.all.destroy
+    Order.all.destroy
 
     100.times do |count|
-      Customer.create(name: Faker::Name.name, email: Faker::Internet.email)
+      orders = []
+      rand(5).times do
+        orders << Order.new(description: Faker::Company.name, amount: rand(100))
+      end
+
+      Customer.create(name: Faker::Name.name, email: Faker::Internet.email, orders: orders)
     end
   end
 end
+

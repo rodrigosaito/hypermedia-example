@@ -12,6 +12,8 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 
 class HypermediaExample < Sinatra::Base
+  helpers Sinatra::Hal
+
   configure :development do
     register Sinatra::Reloader
   end
@@ -31,7 +33,7 @@ class HypermediaExample < Sinatra::Base
 end
 
 # Config database
-DataMapper.logger = HypermediaExample.logger
+#DataMapper.logger = HypermediaExample.logger
 DataMapper::Property::String.length(255)
 
 database_config = {

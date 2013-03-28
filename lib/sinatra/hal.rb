@@ -4,7 +4,7 @@ module Sinatra
 
   module Hal
 
-    def hal(object, options ={})
+    def hal(object, options = {})
       content_type "application/hal+json"
 
       decorator = Haler.decorate(object, options)

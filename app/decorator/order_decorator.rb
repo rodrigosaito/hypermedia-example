@@ -4,5 +4,5 @@ class OrderDecorator
   field :description
   field :amount
 
-
 end
+
