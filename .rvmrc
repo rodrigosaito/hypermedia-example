@@ -1,1 +1,1 @@
-rvm use 1.9.3-p385@hypermedia-example --create
+rvm use 2.0.0-p0@hypermedia-example --create
